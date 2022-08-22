@@ -24,7 +24,20 @@ public class DeplacementAuCurseur : MonoBehaviour
     private void Update()
     {
         Vector2 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetMouseButton(0) && move) activeAreaEffector.position = new Vector3(worldMousePos.x, worldMousePos.y, 0);
+        if (Input.GetMouseButton(0) && move)
+        {
+            ForceManager typeDeMouv = activeAreaEffector.GetComponent<ForceManager>();
+            if (typeDeMouv.yType == true)
+            {
+                activeAreaEffector.position = new Vector3(activeAreaEffector.transform.position.x, worldMousePos.y, 0); // worldMousePos.y, 0);
+            }
+            else if (typeDeMouv.xType == true)
+            {
+                activeAreaEffector.position = new Vector3(worldMousePos.x, activeAreaEffector.transform.position.y, 0); // worldMousePos.y, 0);
+            }
+            else    activeAreaEffector.position = new Vector3(worldMousePos.x, worldMousePos.y, 0);
+
+        }
         if (Input.GetMouseButtonDown(0) && resize)
         {
             radiusOffset = worldMousePos - new Vector2(activeAreaEffector.position.x, activeAreaEffector.position.y);

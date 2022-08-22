@@ -5,6 +5,9 @@ using UnityEngine;
 public class ForceManager : MonoBehaviour
 {
 
+    [SerializeField] public bool xType;
+    [SerializeField] public bool yType;
+
     float forceMultiplier = 0.2f;
 
     float force;
